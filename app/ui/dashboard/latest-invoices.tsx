@@ -2,12 +2,12 @@
 
 import Image from 'next/image';
 import { lusitana } from '@/app/ui/fonts';
-import { Invoice } from '@/app/lib/definitions';
+import { LatestInvoice } from '@/app/lib/definitions';
 
 export default function LatestInvoices({
   latestInvoices,
 }: {
-  latestInvoices: Invoice[];
+  latestInvoices: LatestInvoice[];
 }) {
   if (!latestInvoices || latestInvoices.length === 0) {
     return (
@@ -35,10 +35,10 @@ export default function LatestInvoices({
               {invoice.image_url ? (
                 <Image
                   src={invoice.image_url}
-                  alt={invoice.customer}
+                  alt={invoice.name}
                   width={40}
                   height={40}
-                  className="rounded-full"
+                  className="rounded-full object-cover"
                 />
               ) : (
                 <div className="h-10 w-10 rounded-full bg-gray-200 flex items-center justify-center text-gray-400 text-sm">
@@ -47,7 +47,7 @@ export default function LatestInvoices({
               )}
 
               <div>
-                <p className="font-medium">{invoice.customer}</p>
+                <p className="font-medium">{invoice.name}</p>
                 <p className="text-sm text-gray-500">{invoice.email}</p>
               </div>
             </div>
